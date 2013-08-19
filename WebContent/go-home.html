@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html> 
+<html> 
+	<body> 
+		<div data-role=page id=go-home data-add-back-btn=true>
+			<div data-role=header data-position=fixed>
+				<h1 id=go-home-title>Gå hjem tid</h1>
+			</div>
+			<table class=normal-text>
+				<tbody>
+					<tr>
+						<td class=details id=start-title>Tidspunkt</td>
+						<td id=start class=details>
+							<fieldset data-role="controlgroup" data-type="horizontal">
+							    <label for="select-hours">Timer</label>
+							    <select name="select-hours" id="select-hours">
+							    	<option value="" data-placeholder=true>Timer</option>
+							    	<option>6</option>
+							    	<option>7</option>
+							    	<option>8</option>
+							    	<option>9</option>
+							    	<option>10</option>
+							    	<option>11</option>
+							    	<option>12</option>
+							    	<option>13</option>
+							    	<option>14</option>
+							    	<option>15</option>
+							    	<option>16</option>
+							    	<option>17</option>
+							    	<option>18</option>
+							    </select>
+							    <label for="select-minutes">Minuter</label>
+							    <select name="select-minutes" id="select-minutes">
+							    	<option value="" data-placeholder=true>Minutter</option>
+							    </select>
+							</fieldset>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<fieldset class="ui-grid-a bottomBar hidden" data-position=fixed id=updateBar>
+			    <div class="ui-block-a"><a data-role=button id=btn-update data-theme="b">Opdater</a></div>       
+				<div class="ui-block-b"><a data-role=button id=btn-delete data-theme="c">Aflys i dag?</a></div>
+			</fieldset>
+			<fieldset class="ui-grid-a bottomBar hidden" data-position=fixed id=createBar>
+			    <div class="ui-block-a"><a data-role=button id=btn-today data-theme="b" class=ui-disabled>I dag</a></div>       
+				<div class="ui-block-b"><a data-role=button id=btn-tomorrow data-theme="b" class=ui-disabled>I morgen</a></div>
+			</fieldset>
+		</div>
+	</body>
+</html>

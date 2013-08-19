@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html> 
+<html> 
+	<body> 
+		<div data-role=page id=optional data-add-back-btn=true>
+			<div data-role=header data-position=fixed>
+				<h1 id=optional-title>Selvbestemmer</h1>
+			</div>
+			<table class=normal-text>
+				<tbody>
+					<tr>
+						<td class=details id=start-title>Start&nbsp;tidspunkt</td>
+						<td id=start class=details>
+							<fieldset data-role="controlgroup" data-type="horizontal">
+							    <label for="start-hours">Timer</label>
+							    <select name="start-hours" id="start-hours">
+							    	<option value="" data-placeholder=true>Timer</option>
+							    	<option>8</option>
+							    	<option>9</option>
+							    	<option>10</option>
+							    	<option>11</option>
+							    	<option>12</option>
+							    	<option>13</option>
+							    	<option>14</option>
+							    	<option>15</option>
+							    	<option>16</option>
+							    	<option>17</option>
+							    	<option>18</option>
+							    </select>
+							    <label for="start-minutes">Minuter</label>
+							    <select name="start-minutes" id="start-minutes">
+							    	<option value="" data-placeholder=true>Minutter</option>
+							    </select>
+							</fieldset>
+						</td>
+					</tr>
+					<tr>
+						<td class=details id=end-title>Slut&nbsp;tidspunkt</td>
+						<td id=start class=details>
+							<fieldset data-role="controlgroup" data-type="horizontal">
+							    <label for="end-hours">Timer</label>
+							    <select name="end-hours" id="end-hours">
+							    	<option value="" data-placeholder=true>Timer</option>
+							    	<option>8</option>
+							    	<option>9</option>
+							    	<option>10</option>
+							    	<option>11</option>
+							    	<option>12</option>
+							    	<option>13</option>
+							    	<option>14</option>
+							    	<option>15</option>
+							    	<option>16</option>
+							    	<option>17</option>
+							    	<option>18</option>
+							    </select>
+							    <label for="end-minutes">Minuter</label>
+							    <select name="end-minutes" id="end-minutes">
+							    	<option value="" data-placeholder=true>Minutter</option>
+							    </select>
+							</fieldset>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div data-role=content>
+				<fieldset data-role="controlgroup">
+					<label>
+	        			<input type="checkbox" name=sendHome id=sendHome>bliver sendt hjem når selvbestemmer tiden udløber
+	    			</label>
+	    		</fieldset>
+			</div>
+			<fieldset class="ui-grid-a bottomBar hidden" data-position=fixed id=updateBar>
+			    <div class="ui-block-a"><a data-role=button id=btn-update data-theme="b">Opdater</a></div>       
+				<div class="ui-block-b"><a data-role=button id=btn-delete data-theme="c">Aflys i dag?</a></div>
+			</fieldset>
+			<fieldset class="ui-grid-a bottomBar hidden" data-position=fixed id=createBar>
+			    <div class="ui-block-a"><a data-role=button id=btn-today data-theme="b" class=ui-disabled>I dag</a></div>       
+				<div class="ui-block-b"><a data-role=button id=btn-tomorrow data-theme="b" class=ui-disabled>I morgen</a></div>
+			</fieldset>
+		</div>
+	</body>
+</html>

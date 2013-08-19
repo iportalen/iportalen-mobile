@@ -1,0 +1,49 @@
+.hidden {
+	display: none;
+}
+
+.dot {
+    display: inline-block;
+    width:12px;height:12px;
+    border-radius:6px;
+    background-color:#8999A6;
+}
+.active {
+    background-color: white;
+}
+
+#olmap{
+    height: 100%;
+    width: 100%;
+}
+
+.normal-text {
+	margin-left: 10px;
+	font-weight: bold; 
+}
+
+.small-text {
+	margin-left: 10px;
+	font-size: 0.75em; 
+}
+
+img.profile {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto 
+}
+
+fieldset.bottomBar {
+	margin: 10px;
+}
+
+td.details {
+    padding: 5px;
+}
+
+td.top {
+	vertical-align: top;
+}
+
