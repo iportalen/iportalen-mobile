@@ -46,22 +46,22 @@ $(document).on('pageinit', function(event) {
 		$.each(profile.user.children, function() {
 			console.log("Adding slider for " + this.firstName);
 			var img;
+			var name = $("<h2 style='text-align:center;'>").text(this.firstName).addClass("profile");
 			if (this.pictureLastModified !== 0) {
 				img = $("<img>").prop("id", "childImage" + this.realm + this.id).prop("src", profile.url() + "/mobile/childImage?"+$.param({"childId": this.id, "Authorization": window.btoa(profile.user.token)})).addClass("profile");
 			} else {
 				img = $("<img>").prop("id", "childImage" + this.realm + this.id).prop("src", "image/photo.png").addClass("profile");
 			}
-			var name = $("<h2 style='text-align:center;'>").text(this.firstName).addClass("profile");
 			var list = $("<ul data-role=listview data-inset=false data-divider-theme=a>").prop("id", "day" + this.realm + this.id);
-			var slide = iportalen.mySwiper.createSlide(img.get(0).outerHTML + name.get(0).outerHTML + list.get(0).outerHTML);
+			var slide = iportalen.mySwiper.createSlide((img !== undefined ? img.get(0).outerHTML : name.get(0).outerHTML) + list.get(0).outerHTML);
 			slide.child = this;
 			slide.renderDay = iportalen.renderDay;
-			slide.refresh = function() {
+			slide.refresh = function(force) {
 				var oneMinute = 1000 * 60;
 				$("#navn").text(slide.child.firstName);
 				profile.setting.goHomeActivated ? $("#btn-go-home").show() : $("#btn-go-home").hide();
 				$("#go-home-url").prop("href", "go-home.html?" + $.param({id:slide.child.id}));
-				if (slide.child.day === undefined || slide.child.day.lastUpdated === undefined || slide.child.day.lastUpdated.getTime()+oneMinute < new Date().getTime()) {
+				if (force || slide.child.day === undefined || slide.child.day.lastUpdated === undefined || slide.child.day.lastUpdated.getTime()+oneMinute < new Date().getTime()) {
 					profile.refreshDay(slide.child, function(result) {
 						if (result.status == 200 || result.status == 304) {
 							slide.renderDay();
@@ -140,7 +140,7 @@ $(document).on('pageinit', function(event) {
 $(document).on("pageshow", function(event, ui) {
 	var page = $(event.target);
 	if (page.find(".bottomBar:visible").length != 0) {
-		page.find('[class^=ui-block]:visible').width(page.find(".ui-block-a:visible").width()-10);
+		page.find('[id^=btn]:visible').width(page.find('[id^=btn]:visible').width()-20);
 		console.log("Resizing bottom buttons");
 	}
 });

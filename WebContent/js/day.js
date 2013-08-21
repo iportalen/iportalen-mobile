@@ -90,7 +90,7 @@ $(document).on("pageshow", "#messages", function(event, ui) {
 
 $(document).delegate('div[data-role=dialog]', 'pageinit', function(event) {
 	var refresh = function(result) {
-		iportalen.mySwiper.currentSlide().refresh();
+		iportalen.mySwiper.currentSlide().refresh(true);
 	};
 	var params = $.parseParams(event.target.baseURI.slice(event.target.baseURI.indexOf('?')));
 	var page = $(event.target);

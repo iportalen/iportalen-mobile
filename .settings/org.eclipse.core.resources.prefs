@@ -1,6 +1,11 @@
 eclipse.preferences.version=1
+encoding//WebContent/confirm-activity-cancellation.html=UTF-8
 encoding//WebContent/confirm-delete-go-home.html=UTF-8
 encoding//WebContent/confirm-delete-optional.html=UTF-8
+encoding//WebContent/confirm-delete-profile.html=UTF-8
+encoding//WebContent/day.html=UTF-8
 encoding//WebContent/go-home.html=UTF-8
+encoding//WebContent/message.html=UTF-8
 encoding//WebContent/optional.html=UTF-8
+encoding//WebContent/registration.html=UTF-8
 encoding/<project>=UTF-8

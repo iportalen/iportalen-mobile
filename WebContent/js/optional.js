@@ -1,6 +1,6 @@
 $(document).on("pagebeforeshow", "#optional", function(event, ui) {
 	var refresh = function() {
-		iportalen.mySwiper.currentSlide().refresh();
+		iportalen.mySwiper.currentSlide().refresh(true);
 		history.back();
 	};
 	var day = iportalen.currentChild.day;
@@ -31,8 +31,12 @@ $(document).on("pagebeforeshow", "#optional", function(event, ui) {
 			startMinuteSelect.val(startMinutes);
 			endMinuteSelect.val(endMinutes);
 			minutesSelectors.selectmenu("refresh");
-			startHourSelect.val(day.optionalLeaveTime.beginTime.slice(11,13));
-			endHourSelect.val(day.optionalLeaveTime.endTime.slice(11,13));
+			var hours = day.optionalLeaveTime.beginTime.slice(11,13);
+			if (hours.charAt(0) === '0') hours = hours.slice(1,2);
+			startHourSelect.val(hours);
+			hours = day.optionalLeaveTime.endTime.slice(11,13);
+			if (hours.charAt(0) === '0') hours = hours.slice(1,2);
+			endHourSelect.val(hours);
 			hoursSelectors.selectmenu("refresh");
 			sendHome.prop("checked", day.optionalLeaveTime.sendHome);
 			sendHome.checkboxradio("refresh");

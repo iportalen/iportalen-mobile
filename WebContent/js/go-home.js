@@ -1,6 +1,6 @@
 $(document).on("pagebeforeshow", "#go-home", function(event, ui) {
 	var refresh = function() {
-		iportalen.mySwiper.currentSlide().refresh();
+		iportalen.mySwiper.currentSlide().refresh(true);
 		history.back();
 	}
 	var day = iportalen.currentChild.day;
@@ -24,7 +24,9 @@ $(document).on("pagebeforeshow", "#go-home", function(event, ui) {
 			var minutes = day.goHome.date.slice(14,16);
 			minutesSelect.val(minutes);
 			minutesSelect.selectmenu("refresh");
-			hoursSelect.val(day.goHome.date.slice(11,13));
+			var hours = day.goHome.date.slice(11,13);
+			if (hours.charAt(0) === '0') hours = hours.slice(1,2);
+			hoursSelect.val(hours);
 			hoursSelect.selectmenu("refresh");
 			page.find("#updateBar").show();
 		} else {

@@ -1,5 +1,10 @@
 ﻿<!DOCTYPE html> 
 <html> 
+	<head> 
+		<script>
+			location.href = "mobile.html";
+		</script>    
+	</head> 
 	<body> 
 		<div data-role=page id=optional data-add-back-btn=true>
 			<div data-role=header data-position=fixed>
@@ -68,14 +73,14 @@
 	    			</label>
 	    		</fieldset>
 			</div>
-			<fieldset class="ui-grid-a bottomBar hidden" data-position=fixed id=updateBar>
-			    <div class="ui-block-a"><a data-role=button id=btn-update data-theme="b">Opdater</a></div>       
-				<div class="ui-block-b"><a data-role=button id=btn-delete data-theme="c">Aflys i dag?</a></div>
-			</fieldset>
-			<fieldset class="ui-grid-a bottomBar hidden" data-position=fixed id=createBar>
-			    <div class="ui-block-a"><a data-role=button id=btn-today data-theme="b" class=ui-disabled>I dag</a></div>       
-				<div class="ui-block-b"><a data-role=button id=btn-tomorrow data-theme="b" class=ui-disabled>I morgen</a></div>
-			</fieldset>
+			<div data-position=fixed id=updateBar class="bottomBar">
+			    <a data-role=button id=btn-update data-theme="b">Opdater</a>       
+				<a data-role=button id=btn-delete data-theme="c">Aflys i dag?</a>
+			</div>
+			<div data-position=fixed id=createBar class="bottomBar hidden">
+			    <a data-role=button id=btn-today data-theme="b" class=ui-disabled>I dag</a>       
+				<a data-role=button id=btn-tomorrow data-theme="b" class=ui-disabled>I morgen</a>
+			</div>
 		</div>
 	</body>
 </html>
