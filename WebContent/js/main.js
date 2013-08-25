@@ -45,23 +45,35 @@ $(document).on('pageinit', function(event) {
 		if (profile.user.children === undefined || profile.user.children.length === 0) return;
 		$.each(profile.user.children, function() {
 			console.log("Adding slider for " + this.firstName);
-			var img;
-			var name = $("<h2 style='text-align:center;'>").text(this.firstName).addClass("profile");
+            var header = $("<div>").prop("id", "childHeader" + this.realm + this.id);
+            var img;
 			if (this.pictureLastModified !== 0) {
-				img = $("<img>").prop("id", "childImage" + this.realm + this.id).prop("src", profile.url() + "/mobile/childImage?"+$.param({"childId": this.id, "Authorization": window.btoa(profile.user.token)})).addClass("profile");
+                img = $("<img>").prop("id", "childImage" + this.realm + this.id).prop("src", profile.url() + "/mobile/childImage?"+$.param({"childId": this.id, "Authorization": window.btoa(profile.user.token)})).addClass("profile");
+				header.append(img);
 			} else {
-				img = $("<img>").prop("id", "childImage" + this.realm + this.id).prop("src", "image/photo.png").addClass("profile");
-			}
-			var list = $("<ul data-role=listview data-inset=false data-divider-theme=a>").prop("id", "day" + this.realm + this.id);
-			var slide = iportalen.mySwiper.createSlide((img !== undefined ? img.get(0).outerHTML : name.get(0).outerHTML) + list.get(0).outerHTML);
+                img = $("<img>").prop("id", "childImage" + this.realm + this.id).prop("src", "image/photo.png").addClass("profile");
+            }
+            header.append($("<h2 style='text-align:center;'>").text(this.firstName).addClass("profile").prop("id", "childName" + this.realm + this.id).hide());
+            var divider = $("<div data-role='list-divider' style='text-align:center;' role='heading' class='ui-li ui-li-divider ui-bar-a ui-first-child'>").text("I dag");
+            header.append(divider);
+			var divDay = $("<div class='dataTables_scrollBody' style='overflow: auto; position: relative; width: 100%;'>").prop("id", "childDay" + this.realm + this.id);
+			var list = $("<ul data-role=listview data-inset=false data-divider-theme=a> style='height: 100%;'").prop("id", "day" + this.realm + this.id);
+			divDay.append(list);
+			var slide = iportalen.mySwiper.createSlide(header.get(0).outerHTML + divDay.get(0).outerHTML);
 			slide.child = this;
 			slide.renderDay = iportalen.renderDay;
+            slide.resizeEvents = function () {
+                var dayHeight = iportalen.mySwiper.height - header.outerHeight(true);
+                divDay.height(dayHeight);
+                console.log("Day height: " + (iportalen.mySwiper.height - $("#childHeader"+slide.child.realm+slide.child.id).outerHeight(true)));
+            };
 			slide.refresh = function(force) {
 				var oneMinute = 1000 * 60;
 				$("#navn").text(slide.child.firstName);
 				profile.setting.goHomeActivated ? $("#btn-go-home").show() : $("#btn-go-home").hide();
 				$("#go-home-url").prop("href", "go-home.html?" + $.param({id:slide.child.id}));
 				if (force || slide.child.day === undefined || slide.child.day.lastUpdated === undefined || slide.child.day.lastUpdated.getTime()+oneMinute < new Date().getTime()) {
+                    slide.resizeEvents();
 					profile.refreshDay(slide.child, function(result) {
 						if (result.status == 200 || result.status == 304) {
 							slide.renderDay();
@@ -104,7 +116,7 @@ $(document).on('pageinit', function(event) {
 	}, true);
 	iportalen.profiles.changed = function(profile) {
 		setTimeout(function() {
-			console.log("Refreshing...");
+			console.log("Refreshing..");
 			location.reload();
 		}, 250);
 	};
@@ -134,14 +146,6 @@ $(document).on('pageinit', function(event) {
 				});
 			});
 		}, 100);
-	}
-});
-
-$(document).on("pageshow", function(event, ui) {
-	var page = $(event.target);
-	if (page.find(".bottomBar:visible").length != 0) {
-		page.find('[id^=btn]:visible').width(page.find('[id^=btn]:visible').width()-20);
-		console.log("Resizing bottom buttons");
 	}
 });
 

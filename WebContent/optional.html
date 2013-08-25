@@ -73,13 +73,17 @@
 	    			</label>
 	    		</fieldset>
 			</div>
-			<div data-position=fixed id=updateBar class="bottomBar">
-			    <a data-role=button id=btn-update data-theme="b">Opdater</a>       
-				<a data-role=button id=btn-delete data-theme="c">Aflys i dag?</a>
+			<div data-position=fixed id=updateBar>
+				<div data-role=content>
+				    <a data-role=button id=btn-update data-theme="b">Opdater</a>       
+					<a data-role=button id=btn-delete data-theme="c">Aflys i dag?</a>
+				</div>
 			</div>
-			<div data-position=fixed id=createBar class="bottomBar hidden">
-			    <a data-role=button id=btn-today data-theme="b" class=ui-disabled>I dag</a>       
-				<a data-role=button id=btn-tomorrow data-theme="b" class=ui-disabled>I morgen</a>
+			<div data-position=fixed id=createBar class="hidden">
+				<div data-role=content>
+				    <a data-role=button id=btn-today data-theme="b" class=ui-disabled>I dag</a>       
+					<a data-role=button id=btn-tomorrow data-theme="b" class=ui-disabled>I morgen</a>
+				</div>
 			</div>
 		</div>
 	</body>

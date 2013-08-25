@@ -29,15 +29,13 @@
 
 img.profile {
     display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-left: auto;
     margin-right: auto 
 }
 
-div.bottomBar {
-	margin: 10px;
-}
+
 
 td.details {
     padding: 5px;

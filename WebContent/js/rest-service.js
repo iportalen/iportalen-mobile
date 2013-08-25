@@ -6,7 +6,7 @@ var RESTService = {
 		$.ajaxSetup({ cache: false });
 		var options = {
 			url: profile.url() + "/mobile" + url, 
-			crossDomain: false, 
+			crossDomain: true, 
 			type: "GET", 
 			dataType: "json", 
 			beforeSend: function (request) {
@@ -33,7 +33,7 @@ var RESTService = {
 		if (url.charAt(0) != "/") url = "/" + url;
 		var options = {
 			url: profile.url() + "/mobile" + url, 
-			crossDomain: false, 
+			crossDomain: true, 
 			type: "POST", 
 			dataType: "json",
 			contentType: "application/json; charset=utf-8",

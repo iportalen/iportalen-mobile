@@ -11,7 +11,6 @@ iportalen.renderDay = function() {
 	var list = $("#day"+this.child.realm+this.child.id).listview();
 
 	list.empty();
-	list.append($("<li data-role=list-divider style='text-align:center;'>").text("I dag"));
 
 	if (this.child.day) {
 		var stop = false;
@@ -54,6 +53,7 @@ iportalen.renderDay = function() {
 			}
 		}
 	}
+	list.height(100);
 	list.listview("refresh");
 };
 
@@ -142,4 +142,21 @@ $(document).delegate('div[data-role=dialog]', 'pageinit', function(event) {
 			RESTService.post(isSick ? "/sickness.do" : "/vacation.do", profile, data, refresh);
 		});
 	}
+});
+
+$(document).on('click', function(event, ui) {
+    if (event.target.id.match(/^childImage/)) {
+        $(event.target).slideUp(function(){
+            $("#childName"+event.target.id.slice("childImage".length)).slideDown(function() {
+                iportalen.mySwiper.currentSlide().resizeEvents();
+            });
+        });
+    }
+    if (event.target.id.match(/^childName/)) {
+        $(event.target).slideUp(function(){
+            $("#childImage"+event.target.id.slice("childName".length)).slideDown(function() {
+                iportalen.mySwiper.currentSlide().resizeEvents();
+            });
+        });
+    }
 });
