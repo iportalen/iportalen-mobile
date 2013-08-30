@@ -57,15 +57,16 @@ $(document).on('pageinit', function(event) {
             var divider = $("<div data-role='list-divider' style='text-align:center;' role='heading' class='ui-li ui-li-divider ui-bar-a ui-first-child'>").text("I dag");
             header.append(divider);
 			var divDay = $("<div class='dataTables_scrollBody' style='overflow: auto; position: relative; width: 100%;'>").prop("id", "childDay" + this.realm + this.id);
-			var list = $("<ul data-role=listview data-inset=false data-divider-theme=a> style='height: 100%;'").prop("id", "day" + this.realm + this.id);
+			var list = $("<ul data-role=listview data-inset=false data-divider-theme=a>").prop("id", "day" + this.realm + this.id);
 			divDay.append(list);
 			var slide = iportalen.mySwiper.createSlide(header.get(0).outerHTML + divDay.get(0).outerHTML);
 			slide.child = this;
 			slide.renderDay = iportalen.renderDay;
             slide.resizeEvents = function () {
-                var dayHeight = iportalen.mySwiper.height - header.outerHeight(true);
-                divDay.height(dayHeight);
-                console.log("Day height: " + (iportalen.mySwiper.height - $("#childHeader"+slide.child.realm+slide.child.id).outerHeight(true)));
+                var child = iportalen.mySwiper.currentSlide().child;
+                var dayHeight = iportalen.mySwiper.height - $("#childHeader" + child.realm + child.id).outerHeight(true);
+                $("#childDay" + child.realm + child.id).height(dayHeight);
+                console.log("Day height: " + dayHeight);
             };
 			slide.refresh = function(force) {
 				var oneMinute = 1000 * 60;

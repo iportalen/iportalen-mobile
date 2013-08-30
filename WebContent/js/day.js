@@ -25,7 +25,7 @@ iportalen.renderDay = function() {
 			list.append($("<li>").text("Lukkedag"));
 			stop = true;
 		} else if (day.arrived) {
-			list.append(detailsUrl("day.html", (day.departure ? "Gik kl. " : "Kom kl. ") + iportalen.prettyTime(day.arrived)));
+			list.append(detailsUrl("day.html", (day.departure ? "Gik kl. " : "Kom kl. ") + iportalen.prettyTime(day.departure ? day.departure : day.arrived)));
 		} else if (day.arrived === undefined && day.departure === undefined && day.comment !== undefined) {
 			list.append(detailsUrl("day.html", day.comment));
 		}
