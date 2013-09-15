@@ -47,13 +47,16 @@ $(document).on('pageinit', function(event) {
 			console.log("Adding slider for " + this.firstName);
             var header = $("<div>").prop("id", "childHeader" + this.realm + this.id);
             var img;
+            var name = $("<h2 style='text-align:center;'>").text(this.firstName).addClass("profile").prop("id", "childName" + this.realm + this.id);
 			if (this.pictureLastModified !== 0) {
                 img = $("<img>").prop("id", "childImage" + this.realm + this.id).prop("src", profile.url() + "/mobile/childImage?"+$.param({"childId": this.id, "Authorization": window.btoa(profile.user.token)})).addClass("profile");
-				header.append(img);
+                name.hide();
 			} else {
                 img = $("<img>").prop("id", "childImage" + this.realm + this.id).prop("src", "image/photo.png").addClass("profile");
+				img.hide();
             }
-            header.append($("<h2 style='text-align:center;'>").text(this.firstName).addClass("profile").prop("id", "childName" + this.realm + this.id).hide());
+            header.append(img);
+            header.append(name);
             var divider = $("<div data-role='list-divider' style='text-align:center;' role='heading' class='ui-li ui-li-divider ui-bar-a ui-first-child'>").text("I dag");
             header.append(divider);
 			var divDay = $("<div class='dataTables_scrollBody' style='overflow: auto; position: relative; width: 100%;'>").prop("id", "childDay" + this.realm + this.id);

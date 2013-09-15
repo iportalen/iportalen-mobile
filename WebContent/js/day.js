@@ -30,6 +30,9 @@ iportalen.renderDay = function() {
 			list.append(detailsUrl("day.html", day.comment));
 		}
 		if (stop === false) {
+            if (day.location) {
+                list.append($("<li>").text("Er her - " + day.location));
+            }
 			if (day.messages) {
 				list.append(detailsUrl("messages.html", "Beskeder"));
 			}
