@@ -5,7 +5,7 @@ iportalen.prettyTime = function(date) {
 iportalen.renderDay = function() {
 	
 	var detailsUrl = function(page, text) {
-		return $("<li>").append($("<a>").prop("href", page).text(text));
+        return $("<li>").append($("<a>").prop("href", page).text(text));
 	};
 	
 	var list = $("#day"+this.child.realm+this.child.id).listview();
@@ -39,7 +39,9 @@ iportalen.renderDay = function() {
 			if (day.activities) {
 				$.each(day.activities, function() {
 					if (this.notToday == false) {
-						list.append(detailsUrl("confirm-activity-cancellation.html?"+$.param({"id":this.id}), this.name + " kl. " + iportalen.prettyTime(this.start)));
+                        var li = detailsUrl("confirm-activity-cancellation.html", this.name + " kl. " + iportalen.prettyTime(this.start));
+                        li.prop("data-activity-id", this.id);
+						list.append(li);
 					} else {
 						list.append($("<li>").text(this.name+ " aflyst"));
 					}
@@ -91,11 +93,20 @@ $(document).on("pageshow", "#messages", function(event, ui) {
 	});
 });
 
+$("[data-reg-type]").on("click", function (event) {
+   iportalen.dialogParams = {type: $(event.target).attr("data-reg-type")}
+});
+
+$("[data-activity-id]").on("click", function (event) {
+   iportalen.dialogParams = {id: $(event.target).attr("data-activity-id")}
+});
+
 $(document).delegate('div[data-role=dialog]', 'pageinit', function(event) {
 	var refresh = function(result) {
 		iportalen.mySwiper.currentSlide().refresh(true);
 	};
-	var params = $.parseParams(event.target.baseURI.slice(event.target.baseURI.indexOf('?')));
+	var params = iportalen.dialogParams;
+    iportalen.dialogParams = undefined;
 	var page = $(event.target);
 	var profile = iportalen.profiles.getProfile(iportalen.currentChild.realm);
 	var data = {
