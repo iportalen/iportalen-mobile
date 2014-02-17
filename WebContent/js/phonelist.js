@@ -126,7 +126,7 @@ $(document).on("pageshow", "#contact-details", function(event, ui) {
 			tr.append($("<td>").addClass("details").prop("valign", "top").text("Adresse"));
 			var td = $("<td>");
 			td.addClass("details");
-			var link = $("<a>").prop("href", "https://maps.google.dk/?q="+address+" "+city);
+			var link = $("<a class='ui-btn ui-btn-icon-left ui-icon-location ui-corner-all'>").prop("href", "https://maps.google.dk/?q="+address+" "+city);
 			link.prop("target", "_blank");
 			link.append(address);
 			if (city) {
@@ -150,7 +150,7 @@ $(document).on("pageshow", "#contact-details", function(event, ui) {
 			tr.append($("<td>").addClass("details").prop("valign", "top").text(header));
 			var td = $("<td>");
 			td.addClass("details");
-			var link = $("<a>").prop("href", "tel:"+number).text(number);
+			var link = $("<a class='ui-btn ui-btn-icon-left ui-icon-phone ui-corner-all'>").prop("href", "tel:"+number).text(number);
 			td.append(link);
 			tr.append(td);
 		}
@@ -162,7 +162,7 @@ $(document).on("pageshow", "#contact-details", function(event, ui) {
 			tr.append($("<td>").addClass("details").prop("valign", "top").text("E-mail-adresse"));
 			var td = $("<td>");
 			td.addClass("details");
-			var link = $("<a>").prop("href", "mailto:"+legal.email).text(legal.email);
+			var link = $("<a class='ui-btn ui-btn-icon-left ui-icon-mail ui-corner-all'>").prop("href", "mailto:"+legal.email).text(legal.email);
 			td.append(link);
 			tr.append(td);
 		}

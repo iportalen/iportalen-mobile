@@ -1,9 +1,3 @@
-$(document).bind("mobileinit", function ()
-{
-	$.mobile.defaultPageTransition = 'slide';
-	$.mobile.page.prototype.options.backBtnText = 'Tilbage';
-});
-
 if (typeof Object.create !== 'function') {
 	Object.create = function(o) {
 		var F = new function() {};

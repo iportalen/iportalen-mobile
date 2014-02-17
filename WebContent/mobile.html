@@ -3,42 +3,48 @@
 <head> 
   <meta charset="utf-8"/>
   <meta name=viewport content="user-scalable=no,width=device-width" />
-  <link rel=stylesheet href="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.css" />
+  <link rel=stylesheet href="jquery.mobile-1.4.1/jquery.mobile-1.4.1.min.css" />
   <link rel="stylesheet" href="swiper/idangerous.swiper.css">
   <link rel=stylesheet href="mobile.css" />
   <!--link rel="stylesheet"  href="jqm-icon-pack-2.0-original.css" /-->
-  <script src="jquery.mobile-1.3.2/jquery-1.10.2.min.js"></script>
+  <script src="jquery.mobile-1.4.1/jquery-1.10.2.min.js"></script>
   <title>iportalen</title>
 <script defer src="swiper/idangerous.swiper-1.9.2.min.js"></script>
   <script>
 	  var iportalen = {};
 	  iportalen.prototypes = {};
-	  $(function() {
+	  	$(function() {
 			iportalen.mySwiper = $('.swiper-container').swiper({
 			    mode:'horizontal',
 		  	});
 		});
+		$(document).bind("mobileinit", function ()
+		{
+			$.mobile.defaultPageTransition = 'slide';
+			$.mobile.toolbar.prototype.options.backBtnText = "Tilbage";
+		});
   </script>    
-  <script src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
+  <script src="jquery.mobile-1.4.1/jquery.mobile-1.4.1.min.js"></script>
 
 </head> 
 	<body> 
 		<div data-role=page id=home>
 			<div data-role="panel" id="mypanel" data-display="overlay" data-position="right">
-				<h1 id=navn></h1>
+				<h1 id="navn"></h1>
 				<ul data-role=listview data-inset=false>
-					<li id=btn-vacation><a href="registration.html" data-reg-type=vacation>Fri</a></li>
-					<li id=btn-sickness><a href="registration.html" data-reg-type=sick>Syg</a></li>
-					<li id=btn-message><a href="message.html">Besked</a></li>
-					<li id=btn-go-home><a id=go-home-url>Gå hjem tid</a></li>
-					<li id=btn-phone><a href="phonelist.html">Telefonliste</a></li>
-					<li id=btn-profile><a href="profiles.html" data-transition=slidedown>Profiler</a></li>
-					<li data-icon=delete><a href="#mypanel" data-rel="close">Luk</a></li>
+					<li id="btn-vacation"><a href="registration.html" data-reg-type=vacation>Fri</a></li>
+					<li id="btn-sickness"><a href="registration.html" data-reg-type=sick>Syg</a></li>
+					<li id="btn-message"><a href="message.html" class="ui-btn ui-icon-comment ui-btn-icon-right" >Besked</a></li>
+					<li id="btn-go-home"><a id="go-home-url" class="ui-btn ui-icon-clock ui-btn-icon-right">Gå hjem tid</a></li>
+					<li id="btn-phone"><a href="phonelist.html" class="ui-btn ui-icon-phone ui-btn-icon-right" >Telefonliste</a></li>
+					<li id="btn-profile"><a class="ui-btn ui-icon-user ui-btn-icon-right" href="profiles.html" data-transition=slidedown>Profiler</a></li>
+					<li><a href="#close" data-rel="close" class="ui-btn ui-icon-delete ui-btn-icon-right">Luk</a></li>
 				</ul>
+				
 			</div>
 			<div data-role=header data-position=fixed>
 				<h1 id=title>iportalen</h1>
-				<a href="#mypanel" data-icon=bars class=ui-btn-right>Menu</a>
+				<a href="#mypanel" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-bars ui-btn-icon-notext">Menu</a>
 			</div>
 			<div id=olmap>
 				<div class="swiper-container">
@@ -50,7 +56,7 @@
                     <h1 id="swiper-indicator"></h1>
             </div>            
    		</div>
-		<div data-role=page id=no-support-local-storage>
+		<div data-role=page id="no-support-local-storage">
   			<div data-role=header data-position=fixed>
     			<h1>Local storage</h1>
   			</div>
@@ -63,7 +69,7 @@
 				</p>
   			</div>
 		</div>
-		<div data-role=page id=no-support-xhr>
+		<div data-role=page id="no-support-xhr">
   			<div data-role=header data-position=fixed>
     			<h1>XHR 2.0</h1>
   			</div>
@@ -76,8 +82,8 @@
 				</p>
   			</div>
 		</div>
-		<div data-role=page id=not-working data-add-back-btn=true >
-  			<div data-role=header data-position=fixed>
+		<div data-role=page id="not-working">
+  			<div data-role=header data-position=fixed data-add-back-btn=true>
     			<h1 id=title>Hovsa</h1>
   			</div>
   			<div data-role=content>

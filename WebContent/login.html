@@ -7,17 +7,17 @@
 	</head> 
 
 	<body> 
-		<div data-role=page id=login data-add-back-btn=true>
-			<div data-role=header data-position=fixed>
+		<div data-role=page id="login">
+			<div data-role=header data-position=fixed data-add-back-btn=true>
 				<h1 id=title>Profil</h1>
 			</div>
 			<div data-role=content>
 				<span> Intitutions URL</span>
-				<input type=text id=host placeholder="Eks. humlebien.iportalen.dk">
+				<input type=text id="host" placeholder="Eks. humlebien.iportalen.dk">
 				<span> Brugernavn </span>
-				<input type=text id=user>
+				<input type=text id="user">
 				<span> Adgangskode </span>
-				<input type=password id=password>
+				<input type=password id="password">
 			</div>
 			<div data-role=content>
 				<fieldset data-role="controlgroup" data-type="vertical">
@@ -25,11 +25,11 @@
 					<label for="remember-me">Husk mig</label>		
 				</fieldset>
 			</div>
-			<div data-role=content id=new-profile-div class="hidden">
-					<button data-theme=b data-role="button" id=login-btn disabled="disabled">Log ind</button>
+			<div data-role=content id="new-profile-div" class="hidden">
+					<input type="button" class="ui-btn ui-shadow ui-corner-all" id="login-btn" value="Log ind"/>
 			</div>
-			<div data-role=content id=edit-profile-div class="hidden">
-					<button data-theme=b data-role="button" id=update-btn>Slet profil</button>
+			<div data-role=content id="edit-profile-div" class="hidden">
+					<input type="button" class="ui-btn ui-shadow ui-corner-all" id="update-btn" value="Slet profil"/>
 			</div>			
 		</div>
 	</body>
