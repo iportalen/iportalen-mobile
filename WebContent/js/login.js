@@ -10,6 +10,8 @@ $(document).on("pageshow", "#login", function() {
 					iportalen.profiles.addProfile(profile.name, profile.host, profile.user);
 					history.back();
 				});
+			} else {
+				$("#popupError").popup("open", { transition: "fade" });
 			}
 		});
 	};
@@ -18,18 +20,13 @@ $(document).on("pageshow", "#login", function() {
 	var realm = location.search.replace( "?", "" );
 	var profile = iportalen.profiles.getProfile(realm);
 	
-	if (realm !== "" && profile === null) {
-		history.back();
-		return;
-	}
-	
 	page.find("#title").text(profile.name || "Ny profil");
 	if(profile.user) {
 		page.find("#host").val(profile.host);
 		page.find("#user").val(profile.user.userId);
 		page.find("#edit-profile-div").show();
 		page.find("#update-btn").click(function() {
-			if (page.find("#update-btn").text() == "Opdater profil") {
+			if (page.find("#update-btn").val() == "Opdater profil") {
 				loginFunction();
 			} else {
 				$.mobile.changePage("confirm-delete-profile.html", {data: realm});
@@ -59,14 +56,14 @@ $(document).on("pageshow", "#login", function() {
 	page.find('#login-btn').click(loginFunction);
 	
 	if (realm) {
-		page.find("input").change(function(event) {
+		page.find("input[type=text]").change(function(event) {
 			var changed = false;
 			if (page.find("#host").val() !== profile.host) changed = true;
 			if (page.find("#user").val() !== profile.user.userId) changed = true;
 			if (page.find("#password").val() !== "") changed = true;
 			if (page.find("#remember-me").prop("checked") && profile.user.token === null) changed = true;
 			if (page.find("#remember-me").prop("checked") == false && profile.user.token !== null) changed = true;
-			page.find("#update-btn").text(changed ? "Opdater profil" : "Slet profil").button("refresh");
+			page.find("#update-btn").val(changed ? "Opdater profil" : "Slet profil").button("refresh");
 		});		
 	}
 });

@@ -103,7 +103,11 @@ iportalen.profiles = function() {
 			}
 		},
 		removeProfile: function(realm) {
+			var profile = this.getProfile(realm);
 			remove(realm);
+			if (iportalen.profiles.changed !== undefined) {
+				iportalen.profiles.changed(profile);
+			}
 		},
 		isEmpty: function() {
 			return this.all().length == 0;

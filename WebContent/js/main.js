@@ -91,6 +91,7 @@ $(document).on('pageinit', function(event) {
 		if (iportalen.mySwiper.slides.length == 1) {
 			$("#home-footer").hide();
 		} else {
+			$("#home-footer").show();
 			var swiperIndicator = $("#swiper-indicator");
 			swiperIndicator.empty();
 			for(var i = 0; i < iportalen.mySwiper.slides.length; i++) {
