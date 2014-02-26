@@ -97,6 +97,7 @@ $(document).on("pageshow", "#contact-details", function(event, ui) {
 			var legal1 = result.data[0]; 
 			var legal2 = result.data[1]; 
 			if (legal1 !== undefined) {
+				$("#legal1-title-header").show();
 				$("#legal1-title").text(legal1.firstName + " " + legal1.lastName);
 				addAddress($("#legal1-table"), legal1);
 				addPhone($("#legal1-table"), legal1);
@@ -104,6 +105,7 @@ $(document).on("pageshow", "#contact-details", function(event, ui) {
 				addEmail($("#legal1-table"), legal1);
 			}
 			if (legal2 !== undefined) {
+				$("#legal2-title-header").show();
 				$("#legal2-title").text(legal2.firstName + " " + legal2.lastName);
 				addAddress($("#legal2-table"), legal2);
 				addPhone($("#legal2-table"), legal2);

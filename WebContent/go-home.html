@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html> 
+<!DOCTYPE html> 
 <html> 
 	<head> 
 		<script>
@@ -45,14 +45,26 @@
 			
 			<div data-position=fixed id=updateBar class="hidden">
 				<div data-role=content> 
-				    <a data-role=button id=btn-update data-theme="b">Opdater</a>       
-					<a data-role=button id=btn-delete data-theme="c">Aflys i dag?</a>
+				    <a class="ui-btn ui-btn-b ui-corner-all ui-shadow" id="btn-update">Opdater</a>       
+					<a class="ui-btn ui-btn-a ui-corner-all ui-shadow" id="btn-delete">Aflys i dag?</a>
 				</div>
 			</div>
 			<div data-position=fixed id=createBar class="hidden">
 				<div data-role=content> 
-				    <a data-role=button id=btn-today data-theme="b" class=ui-disabled>I dag</a>       
-					<a data-role=button id=btn-tomorrow data-theme="b" class=ui-disabled>I morgen</a>
+				    <a id="btn-today" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-disabled">I dag</a>       
+					<a id="btn-tomorrow" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-disabled">I morgen</a>
+				</div>
+			</div>
+			<div data-role="popup" id="confirm-delete-go-home" data-overlay-theme="b" data-theme="a" style="max-width: 400px;min-width: 400px;">
+				<div data-role="header" data-theme="a">
+					<h1 id=delete-question>Aflys i dag?</h1>
+				</div>
+				<p>Er du sikker på du ønsker at aflyse i dag?</p>
+				<div role="main" class="ui-content">
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-a"	data-rel="back">Annullér</a></div>
+						<div class="ui-block-b"><a id="btn-confirm-delete-go-home" class="ui-btn ui-corner-all ui-shadow ui-btn-b" data-rel="back">Ja tak</a></div>
+					</div>
 				</div>
 			</div>
 		</div>

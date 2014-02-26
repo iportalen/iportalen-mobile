@@ -34,6 +34,17 @@
 			<div data-role=content id="edit-profile-div" class="hidden">
 					<input type="button" class="ui-btn ui-shadow ui-corner-all" id="update-btn" value="Slet profil"/>
 			</div>			
+			<div data-role="popup" id="confirm-profile-delete" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+				<div data-role="header" data-theme="a">
+					<h1 id="delete-question">Delete Page?</h1>
+				</div>
+				<div role="main" class="ui-content">
+					<h3 class="ui-title">Ønsker du at slette den valgte profil og de tilknyttet børn fra din mobil?</h3>
+					<p>Denne handling kan ikke fortrydes</p>
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-btn-inline" data-rel="back">Annullér</a>
+					<a href="#" id="btn-delete" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-inline" data-rel="back" data-transition="flow">Ja tak</a>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

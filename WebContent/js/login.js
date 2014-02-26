@@ -29,7 +29,12 @@ $(document).on("pageshow", "#login", function() {
 			if (page.find("#update-btn").val() == "Opdater profil") {
 				loginFunction();
 			} else {
-				$.mobile.changePage("confirm-delete-profile.html", {data: realm});
+				page.find("#confirm-profile-delete").popup("open");
+				page.find("#delete-question").text("Slet " + profile.name+"?");
+				page.find("#btn-delete").click(function() {
+					iportalen.profiles.removeProfile(realm);
+				});
+	//$.mobile.changePage("confirm-delete-profile.html", {data: realm});
 			}
 		});
 	} else {
@@ -66,15 +71,4 @@ $(document).on("pageshow", "#login", function() {
 			page.find("#update-btn").val(changed ? "Opdater profil" : "Slet profil").button("refresh");
 		});		
 	}
-});
-
-$(document).delegate('div[data-role=dialog]', 'pageinit', function(event) {
-	if (event.target.id !== "confirm-delete") return;
-	var page = $(event.target);
-	var realm = location.search.replace( "?", "" );
-	var profile = iportalen.profiles.getProfile(realm); 
-	page.find("#delete-question").text("Slet " + profile.name+"?");
-	page.find("#btn-delete").click(function() {
-		iportalen.profiles.removeProfile(realm);
-	});
 });

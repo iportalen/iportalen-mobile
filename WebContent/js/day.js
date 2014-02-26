@@ -33,14 +33,16 @@ iportalen.renderDay = function() {
             if (day.location) {
                 list.append($("<li>").text("Er her - " + day.location));
             }
-			if (day.messages) {
-				list.append(detailsUrl("messages.html", "Beskeder"));
-			}
+		}
+		if (day.messages) {
+			list.append(detailsUrl("messages.html", "Beskeder"));
+		}
+		if (stop === false) {
 			if (day.activities) {
 				$.each(day.activities, function() {
 					if (this.notToday == false) {
-                        var li = detailsUrl("confirm-activity-cancellation.html", this.name + " kl. " + iportalen.prettyTime(this.start));
-                        li.prop("data-activity-id", this.id);
+                        var li = detailsUrl("#", this.name + " kl. " + iportalen.prettyTime(this.start));
+                        li.attr("data-activity-id", this.id);
 						list.append(li);
 					} else {
 						list.append($("<li>").text(this.name+ " aflyst"));
@@ -82,80 +84,8 @@ $(document).on("pageshow", "#day-details", function(event, ui) {
 
 });
 
-$(document).on("pageshow", "#messages", function(event, ui) {
-	var day = iportalen.currentChild.day;
-	var page = $("#messages");
-	$.each(day.messages, function() {
-		page.append($("<h3>").addClass("normal-text").text("Fra " + this.from));
-		page.append($("<span>").addClass("small-text").text("Kl. " + new Date(this.timestamp).prettyTime()));
-		page.append($("<p>").addClass("normal-text").html(this.body.replace(/\n/g, "<br>")));
-		page.append($("<hr>"));
-	});
-});
-
 $("[data-reg-type]").on("click", function (event) {
    iportalen.dialogParams = {type: $(event.target).attr("data-reg-type")}
-});
-
-$("[data-activity-id]").on("click", function (event) {
-   iportalen.dialogParams = {id: $(event.target).attr("data-activity-id")}
-});
-
-$(document).delegate('div[data-role=dialog]', 'pageinit', function(event) {
-	var refresh = function(result) {
-		iportalen.mySwiper.currentSlide().refresh(true);
-	};
-	var params = iportalen.dialogParams;
-    iportalen.dialogParams = undefined;
-	var page = $(event.target);
-	var profile = iportalen.profiles.getProfile(iportalen.currentChild.realm);
-	var data = {
-			"childId": iportalen.currentChild.id,
-	};
-	if (event.target.id === "confirm-activity-cancellation") {
-		page.find("#btn-cancel-activity").click(function() {
-			RESTService.post("/activity/notToday.do?" + $.param({"id":params.id}), profile, null, refresh);
-		});
-	}
-	if (event.target.id === "message") {
-		page.find("#message-comment").on('input', function(){
-			if (page.find("#message-comment").val().length) {
-				page.find("#btn-message-send").removeClass("ui-disabled");
-			} else {
-				page.find("#btn-message-send").addClass("ui-disabled");
-			} 
-		});
-		page.find("#btn-message-send").click(function() {
-			data.body = page.find("#message-comment").val();
-			RESTService.post("/message.do", profile, data, refresh);
-		});
-	}
-	if (event.target.id === "registration") {
-		var isSick = params.type === "sick";
-		if (isSick) {
-			page.find("#registration-comment-box").show();
-			page.find("#registration-title").text("Meld sygdom");
-		} else {
-			page.find("#registration-comment-box").hide();
-			page.find("#registration-title").text("Meld fridag");
-		}
-		page.find("#btn-registration-today").click(function() {
-			var today = new Date();
-			data.from = today.jsonFormat();
-			if (isSick) {
-				data.comment = $("#registration-comment").val();
-			}
-			RESTService.post(isSick ? "/sickness.do" : "/vacation.do", profile, data, refresh);
-		});
-		page.find("#btn-registration-tomorrow").click(function() {
-			var tomorrow = new Date(new Date().getTime()+(60*60*24*1000));
-			data.from = tomorrow.jsonFormat();
-			if (isSick) {
-				data.comment = $("#registration-comment").val();
-			}
-			RESTService.post(isSick ? "/sickness.do" : "/vacation.do", profile, data, refresh);
-		});
-	}
 });
 
 $(document).on('click', function(event, ui) {
