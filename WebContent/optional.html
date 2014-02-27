@@ -6,15 +6,15 @@
 		</script>    
 	</head> 
 	<body> 
-		<div data-role=page id=optional>
+		<div data-role=page id="optional">
 			<div data-role=header data-position=fixed data-add-back-btn=true>
-				<h1 id=optional-title>Selvbestemmer</h1>
+				<h1 id="optional-title">Selvbestemmer</h1>
 			</div>
 			<table class=normal-text>
 				<tbody>
 					<tr>
-						<td class=details id=start-title>Start&nbsp;tidspunkt</td>
-						<td id=start class=details>
+						<td class=details id="start-title">Start&nbsp;tidspunkt</td>
+						<td id="start" class="details">
 							<fieldset data-role="controlgroup" data-type="horizontal">
 							    <label for="start-hours">Timer</label>
 							    <select name="start-hours" id="start-hours">
@@ -39,8 +39,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td class=details id=end-title>Slut&nbsp;tidspunkt</td>
-						<td id=start class=details>
+						<td class=details id="end-title">Slut&nbsp;tidspunkt</td>
+						<td id="start" class="details">
 							<fieldset data-role="controlgroup" data-type="horizontal">
 							    <label for="end-hours">Timer</label>
 							    <select name="end-hours" id="end-hours">
@@ -69,32 +69,30 @@
 			<div data-role=content>
 				<fieldset data-role="controlgroup">
 					<label>
-	        			<input type="checkbox" name=sendHome id=sendHome>bliver sendt hjem når selvbestemmer tiden udløber
+	        			<input type="checkbox" name=sendHome id="sendHome">bliver sendt hjem når selvbestemmer tiden udløber
 	    			</label>
 	    		</fieldset>
 			</div>
-			<div data-position=fixed id=updateBar>
+			<div data-position=fixed id="updateBar">
 				<div data-role=content>
 				    <a id=btn-update class="ui-btn ui-btn-b ui-corner-all ui-shadow">Opdater</a>       
 					<a id=btn-delete class="ui-btn ui-btn-a ui-corner-all ui-shadow">Aflys i dag?</a>
 				</div>
 			</div>
-			<div data-position=fixed id=createBar class="hidden">
+			<div data-position=fixed id="createBar" class="hidden">
 				<div data-role=content>
-				    <a id=btn-today class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-disabled">I dag</a>       
-					<a id=btn-tomorrow class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-disabled">I morgen</a>
+				    <a id="btn-today" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-disabled">I dag</a>       
+					<a id="btn-tomorrow" class="ui-btn ui-btn-b ui-corner-all ui-shadow ui-disabled">I morgen</a>
 				</div>
 			</div>
-			<div data-role="popup" id="confirm-delete-optional" data-overlay-theme="b" data-theme="a" style="max-width: 400px;min-width: 400px;">
+			<div data-role="popup" id="confirm-delete-optional" data-overlay-theme="b" data-theme="a" style="min-width: 250px;">
 				<div data-role="header" data-theme="a">
-					<h1 id=delete-question>Aflys i dag?</h1>
+					<h1 id="delete-question">Aflys i dag?</h1>
 				</div>
 				<p>Er du sikker på du ønsker at aflyse i dag?</p>
 				<div role="main" class="ui-content">
-					<div class="ui-grid-a">
-						<div class="ui-block-a"><a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-a"	data-rel="back">Annullér</a></div>
-						<div class="ui-block-b"><a id="btn-confirm-delete-optional" class="ui-btn ui-corner-all ui-shadow ui-btn-b" data-rel="back">Ja tak</a></div>
-					</div>
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-a"	data-rel="back">Annullér</a>
+					<a id="btn-confirm-delete-optional" class="ui-btn ui-corner-all ui-shadow ui-btn-b" data-rel="back">Ja tak</a>
 				</div>
 			</div>
 		</div>
