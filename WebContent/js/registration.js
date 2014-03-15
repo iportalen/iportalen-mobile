@@ -13,6 +13,7 @@ $("#btn-sickness,#btn-vacation").click(function(event) {
 	var data = {
 			"childId": iportalen.currentChild.id,
 	};
+	dialog.find("a[id^=btn]").off("click");
 	dialog.find("#btn-registration-today").click(function() {
 		var today = new Date();
 		data.from = today.jsonFormat();

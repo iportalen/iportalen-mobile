@@ -12,6 +12,7 @@ $("#btn-message").click(function() {
 			dialog.find("#btn-message-send").addClass("ui-disabled");
 		} 
 	});
+	dialog.find("a[id^=btn]").off("click");
 	dialog.find("#btn-message-send").click(function() {
 		data.body = dialog.find("#message-comment").val();
 		RESTService.post("/message.do", profile, data, iportalen.mySwiper.currentSlide().refresh);
