@@ -8,6 +8,12 @@
     border-radius:6px;
     background-color:#8999A6;
 }
+.header {
+    display: inline-block;
+    border-radius:6px;
+    background-color:#8999A6;
+}
+
 .active {
     background-color: white;
 }
@@ -19,6 +25,10 @@
 
 .normal-text {
 	margin-left: 10px;
+	font-weight: bold; 
+}
+
+.form-text {
 	font-weight: bold; 
 }
 

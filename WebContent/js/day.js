@@ -15,6 +15,11 @@ iportalen.renderDay = function() {
 	if (this.child.day) {
 		var stop = false;
 		var day = this.child.day;
+		if (day.feedback) {
+			var li = detailsUrl("feedback.html?id="+day.feedback.id, day.feedback.name);
+			li.attr("data-theme", "b");
+			list.append(li);
+		}
 		if (day.sick === true) {
 			list.append($("<li>").text(day.comment ? "Sygedag - " + day.comment : "Sygedag"));
 			stop = true;

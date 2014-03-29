@@ -11,10 +11,33 @@ if (typeof Date.prettyTime !== "function") {
 		return this.getHours() + ":" + (this.getMinutes() < 10 ? "0" : "") + this.getMinutes();
 	};
 }
+if (typeof Date.prettyDate !== "function") {
+	Date.prototype.prettyDate = function() {
+		return this.getDate() + "." + (this.getMonth()+1) + "." + this.getFullYear();
+	};
+}
 if (typeof Date.jsonFormat !== "function") {
 	Date.prototype.jsonFormat = function() {
 		// "dd-MM-yyyy HH:mm:ss"
 		return this.getDate() + "-" + (this.getMonth()+1) + "-" + this.getFullYear() + " " + this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds();
+	};
+}
+if (typeof Date.jsonParse !== "function") {
+	Date.jsonParse = function(date) {
+		// "dd-MM-yyyy HH:mm:ss"
+		var parts = date.split(' ');
+		var dateParts = parts[0].split("-");
+		var timeParts = null;
+		if (parts.length == 2) {
+			timeParts = parts[1].split(":");
+		}
+		var newDate = new Date(dateParts[2], dateParts[1]-1, dateParts[0]);
+		if (timeParts !== null) {
+			newDate.setHours(timeParts[0]);
+			newDate.setMinutes(timeParts[1]);
+			newDate.setSeconds(timeParts[2]);
+		}
+		return newDate;
 	};
 }
 
