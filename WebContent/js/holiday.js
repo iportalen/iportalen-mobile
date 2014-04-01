@@ -50,3 +50,28 @@ $(document).on("pagebeforeshow", "#feedback", function(event, ui) {
 		return fieldset;
 	}
 });
+
+$(document).on("pageshow", "#planned-holiday", function(event, ui) {
+	var child = iportalen.currentChild;
+	var profile = iportalen.profiles.getProfile(child.realm);
+	var requestParams = $.param({"childId":child.id});
+	var page = $("#planned-holiday");
+	var list = page.find("#planned-holiday-list");
+    RESTService.get("/holiday/planned.do?" + requestParams, profile, function(result) {
+		if (result.status == 200) {
+		var previousWeekNumber = -1;
+			$.each(result.data, function() {
+				if (previousWeekNumber != this.weekNumber) {
+					previousWeekNumber = this.weekNumber;
+					list.append($("<li>").attr("data-role", "list-divider").text("Uge " + this.weekNumber))
+				}
+				var li = $("<li>").text(Date.jsonParse(this.date).prettyDate() + " (" + this.weekday +")");
+				if (this.closingDay) {
+					li.text(li.text() + " - Lukkedag");
+				}
+				list.append(li);
+			});
+			list.listview("refresh");
+		}
+    });
+});
