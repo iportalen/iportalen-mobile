@@ -5,6 +5,7 @@ $("#btn-message").click(function() {
 	var profile = iportalen.profiles.getProfile(iportalen.currentChild.realm);
 	var dialog = $("#message");
 	dialog.find("#message-comment").val("");
+	dialog.find("#btn-message-send").addClass("ui-disabled");
 	dialog.find("#message-comment").on('input', function(){
 		if (dialog.find("#message-comment").val().length) {
 			dialog.find("#btn-message-send").removeClass("ui-disabled");

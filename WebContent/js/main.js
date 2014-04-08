@@ -74,7 +74,7 @@ $(document).on('pageinit', function(event) {
             }
             header.append(img);
             header.append(name);
-            var divider = $("<div data-role='list-divider' style='text-align:center;' role='heading' class='ui-li ui-li-divider ui-bar-a ui-first-child'>").text("I dag");
+            var divider = $("<div data-role='list-divider' style='text-align:center;' class='ui-li ui-li-divider ui-bar-b ui-first-child'>").text("I dag");
             header.append(divider);
 			var divDay = $("<div class='dataTables_scrollBody' style='overflow: auto; position: relative; width: 100%;'>").prop("id", "childDay" + this.realm + this.id);
 			var list = $("<ul data-role=listview data-inset=false data-divider-theme=a>").prop("id", "day" + this.realm + this.id);

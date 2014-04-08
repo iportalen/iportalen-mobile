@@ -10,7 +10,7 @@ $(document).on("pagebeforeshow", "#feedback", function(event, ui) {
         var content = $("#feedback-content");
         if (result.status === 200) {
             $.each(result.data, function() {
-                content.append($("<div data-role=header>").append($("<h3>").text("Uge " + this.weekOfYear)));
+                content.append($("<div data-role=header data-theme='b'>").append($("<h3>").text("Uge " + this.weekOfYear)));
 				var div = $("<div class='ui-content' role='main'>");
 				div.append(getFieldset("Mandag", this.monday, this.mondayComes, this.mondayOff, this.mondayClosingDay));
 				div.append(getFieldset("Tirsdag", this.tuesday, this.tuesdayComes, this.tuesdayOff, this.tuesdayClosingDay));
@@ -63,7 +63,7 @@ $(document).on("pageshow", "#planned-holiday", function(event, ui) {
 			$.each(result.data, function() {
 				if (previousWeekNumber != this.weekNumber) {
 					previousWeekNumber = this.weekNumber;
-					list.append($("<li>").attr("data-role", "list-divider").text("Uge " + this.weekNumber))
+					list.append($("<li>").attr("data-role", "list-divider").attr("data-theme", 'b').text("Uge " + this.weekNumber))
 				}
 				var li = $("<li>").text(Date.jsonParse(this.date).prettyDate() + " (" + this.weekday +")");
 				if (this.closingDay) {

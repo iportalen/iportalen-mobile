@@ -9,6 +9,7 @@ var RESTService = {
 			crossDomain: true, 
 			type: "GET", 
 			dataType: "json", 
+			contentType: "application/json; charset=utf-8",
 			beforeSend: function (request) {
 				if (profile.user !== undefined) request.setRequestHeader("Authorization", "Basic: " + window.btoa(profile.user.token));
 			}

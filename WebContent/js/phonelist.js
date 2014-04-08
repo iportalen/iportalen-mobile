@@ -99,35 +99,34 @@ $(document).on("pageshow", "#contact-details", function(event, ui) {
 			if (legal1 !== undefined) {
 				$("#legal1-title-header").show();
 				$("#legal1-title").text(legal1.firstName + " " + legal1.lastName);
-				addAddress($("#legal1-table"), legal1);
-				addPhone($("#legal1-table"), legal1);
-				addMobile($("#legal1-table"), legal1);
-				addEmail($("#legal1-table"), legal1);
+				var legal1Content = $("#legal1-content");
+				addAddress(legal1Content, legal1);
+				addPhone(legal1Content, legal1);
+				addMobile(legal1Content, legal1);
+				addEmail(legal1Content, legal1);
 			}
 			if (legal2 !== undefined) {
 				$("#legal2-title-header").show();
 				$("#legal2-title").text(legal2.firstName + " " + legal2.lastName);
-				addAddress($("#legal2-table"), legal2);
-				addPhone($("#legal2-table"), legal2);
-				addMobile($("#legal2-table"), legal2);
-				addEmail($("#legal2-table"), legal2);
+				var legal2Content = $("#legal2-content");
+				addAddress(legal2Content, legal2);
+				addPhone(legal2Content, legal2);
+				addMobile(legal2Content, legal2);
+				addEmail(legal2Content, legal2);
 			}
 		}
 	});
 	
 	var addAddress = function(table, legal) {
 		if (legal.address || legal.zipcode || legal.city) {
-			var tr = $("<tr>");
-			table.append(tr);
+			var paragraf = $("<p>");
+			table.append(paragraf);
 			var address = legal.address || "";
 			var city = null;
 			if (legal.zipcode || legal.city) {
 				city = legal.zipcode + " " || "";
 				city += legal.city || "";
 			}
-			tr.append($("<td>").addClass("details").prop("valign", "top").text("Adresse"));
-			var td = $("<td>");
-			td.addClass("details");
 			var link = $("<a class='ui-btn ui-btn-icon-left ui-icon-location ui-corner-all'>").prop("href", "https://maps.google.dk/?q="+address+" "+city);
 			link.prop("target", "_blank");
 			link.append(address);
@@ -135,38 +134,29 @@ $(document).on("pageshow", "#contact-details", function(event, ui) {
 				if (address.length !== 0) link.append($("<br>"));
 				link.append(city);
 			}
-			td.append(link);
-			tr.append(td);
+			paragraf.append(link);
 		}
 	};
 	var addPhone = function(table, legal) {
-		addPhoneRow(table, legal, legal.phone, "Telefon");
+		addPhoneRow(table, legal, legal.phone);
 	};
 	var addMobile = function(table, legal) {
-		addPhoneRow(table, legal, legal.mobilePhone, "Mobil");
+		addPhoneRow(table, legal, legal.mobilePhone);
 	};
-	var addPhoneRow = function(table, legal, number, header) {
+	var addPhoneRow = function(table, legal, number) {
 		if (number) {
-			var tr = $("<tr>");
-			table.append(tr);
-			tr.append($("<td>").addClass("details").prop("valign", "top").text(header));
-			var td = $("<td>");
-			td.addClass("details");
+			var paragraf = $("<p>");
+			table.append(paragraf);
 			var link = $("<a class='ui-btn ui-btn-icon-left ui-icon-phone ui-corner-all'>").prop("href", "tel:"+number).text(number);
-			td.append(link);
-			tr.append(td);
+			paragraf.append(link);
 		}
 	};
 	var addEmail = function(table, legal) {
 		if (legal.email) {
-			var tr = $("<tr>");
-			table.append(tr);
-			tr.append($("<td>").addClass("details").prop("valign", "top").text("E-mail-adresse"));
-			var td = $("<td>");
-			td.addClass("details");
+			var paragraf = $("<p>");
+			table.append(paragraf);
 			var link = $("<a class='ui-btn ui-btn-icon-left ui-icon-mail ui-corner-all'>").prop("href", "mailto:"+legal.email).text(legal.email);
-			td.append(link);
-			tr.append(td);
+			paragraf.append(link);
 		}
 	};
 });
