@@ -28,6 +28,17 @@
 	font-weight: bold; 
 }
 
+.normal-right-text {
+	float: right;
+	margin-right: 10px;
+	font-weight: bold; 
+}
+
+.private-header {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 .form-text {
 	font-weight: bold; 
 }

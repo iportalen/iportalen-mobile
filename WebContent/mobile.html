@@ -5,11 +5,11 @@
   <meta name=viewport content="user-scalable=no,width=device-width" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <link rel="apple-touch-icon" href="favicon.ico" />
-  <link rel=stylesheet href="jquery.mobile-1.4.1/jquery.mobile-1.4.1.css" />
+  <link rel=stylesheet href="jquery.mobile-1.4.2/jquery.mobile-1.4.2.css" />
   <link rel="stylesheet" href="swiper/idangerous.swiper.css">
   <link rel=stylesheet href="mobile.css" />
   <!--link rel="stylesheet"  href="jqm-icon-pack-2.0-original.css" /-->
-  <script src="jquery.mobile-1.4.1/jquery-1.10.2.min.js"></script>
+  <script src="jquery.mobile-1.4.2/jquery-1.10.2.min.js"></script>
   <title>iportalen</title>
 <script defer src="swiper/idangerous.swiper-1.9.2.min.js"></script>
   <script>
@@ -19,6 +19,7 @@
 			iportalen.mySwiper = $('.swiper-container').swiper({
 			    mode:'horizontal',
 		  	});
+			moment.lang("da");
 		});
 		$(document).bind("mobileinit", function ()
 		{
@@ -26,7 +27,7 @@
 			$.mobile.toolbar.prototype.options.backBtnText = "Tilbage";
 		});
   </script>    
-  <script src="jquery.mobile-1.4.1/jquery.mobile-1.4.1.min.js"></script>
+  <script src="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js"></script>
 
 </head> 
 	<body> 
@@ -40,6 +41,7 @@
 					<li id="btn-go-home"><a id="go-home-url" class="ui-btn ui-icon-clock ui-btn-icon-right">Gå hjem tid</a></li>
 					<li id="btn-phone"><a href="phonelist.html" class="ui-btn ui-icon-phone ui-btn-icon-right" >Telefonliste</a></li>
 					<li id="btn-planned-holiday"><a href="planned-holiday.html" class="ui-btn ui-icon-calendar ui-btn-icon-right" >Planlagt ferie</a></li>
+					<li id="btn-history"><a href="history.html" class="ui-btn ui-icon-calendar ui-btn-icon-right">Historik</a></li>
 					<li id="btn-profile"><a class="ui-btn ui-icon-user ui-btn-icon-right" href="profiles.html" data-transition=slidedown>Profiler</a></li>
 					<li id="btn-cutomer-feedback"><a class="ui-btn ui-icon-mail ui-btn-icon-right" rel="external" href="mailto:kontakt@iportalen.dk?subject=Ris%20%26%20ros">Ris &amp; ros</a></li>
 					<li><a href="#close" data-rel="close" class="ui-btn ui-icon-delete ui-btn-icon-right">Luk</a></li>
@@ -132,6 +134,7 @@
 			</div>
 		</div>
 		<script src="js/modernizr.custom.49780.js"></script>
+		<script src="js/moment-with-langs.min.js"></script>
 		<script src="js/jquery.deparam.min.js"></script>
 		<script src="js/rest-service.js"></script>
 		<script src="js/profile.js"></script>
@@ -145,6 +148,7 @@
 		<script src="js/message.js"></script>
  		<script src="js/activity.js"></script>
  		<script src="js/holiday.js"></script>
+ 		<script src="js/history.js"></script>
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

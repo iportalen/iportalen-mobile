@@ -56,7 +56,7 @@ iportalen.prototypes.profileFunctions = {
 					callback.call(null, result); 
 				}
 			};
-			RESTService.get("/v2/day.do?id=" + child.id, this, updateCallback);
+			RESTService.get("/day.do?id=" + child.id, this, updateCallback);
 		},
 		save: function() {
 			var realms = iportalen.profiles.getRealms();

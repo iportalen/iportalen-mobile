@@ -5,17 +5,12 @@ if (typeof Object.create !== 'function') {
 		return new F();
 	};
 }
+if (typeof String.capitalize !== "function") {
+	String.prototype.capitalize = function() {
+    	return this.charAt(0).toUpperCase() + this.slice(1);
+	}
+}
 
-if (typeof Date.prettyTime !== "function") {
-	Date.prototype.prettyTime = function() {
-		return this.getHours() + ":" + (this.getMinutes() < 10 ? "0" : "") + this.getMinutes();
-	};
-}
-if (typeof Date.prettyDate !== "function") {
-	Date.prototype.prettyDate = function() {
-		return this.getDate() + "." + (this.getMonth()+1) + "." + this.getFullYear();
-	};
-}
 if (typeof Date.jsonFormat !== "function") {
 	Date.prototype.jsonFormat = function() {
 		// "dd-MM-yyyy HH:mm:ss"
