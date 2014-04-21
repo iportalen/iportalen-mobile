@@ -8,13 +8,11 @@ $(document).on("pagebeforeshow", "#history", function(event, ui) {
         var content = $("#history-content");
         if (result.status === 200) {
             $.each(result.data, function() {
-				var arrived = Date.jsonParse(this.arrived);
-				var departure = this.departure ? Date.jsonParse(this.departure) : null;
-				var text = this.weekday + " d."+arrived.prettyDate();
+				var text = this.arrived.format("dddd").capitalize() + " "+this.arrived.format("D MMM");
 				if (this.allDay == false) {
-					text += " " + arrived.prettyTime();
-					if (departure) {
-						text += " - " + departure.prettyTime();
+					text += " " + this.arrived.format("LT");
+					if (this.departure) {
+						text += " - " + this.departure.format("LT");
 					}
 				}
                 page.append($("<div data-role=footer data-theme='b'>").append($("<h3>").text(text)));

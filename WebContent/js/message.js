@@ -26,9 +26,11 @@ $(document).on("pageshow", "#messages", function(event, ui) {
 	var day = iportalen.currentChild.day;
 	var page = $("#messages");
 	$.each(day.messages, function() {
-		page.append($("<h3>").addClass("normal-text").text("Fra " + this.from));
-		page.append($("<span>").addClass("small-text").text("Kl. " + new Date(this.timestamp).prettyTime()));
+		var div = $("<div data-role='list-divider' class='ui-li ui-li-divider ui-bar-b ui-first-child private-header'>")
+		div.append($("<span>").addClass("normal-text").text("Fra " + this.from))
+		div.append($("<span>").addClass("normal-right-text").text(moment(new Date(this.timestamp)).fromNow()));
+		page.append(div);
 		page.append($("<p>").addClass("normal-text").html(this.body.replace(/\n/g, "<br>")));
-		page.append($("<hr>"));
 	});
+	page.trigger("create");
 });
