@@ -23,17 +23,13 @@ $(document).on("pagebeforeshow", "#optional", function(event, ui) {
 	var endMinuteSelect = page.find("#end-minutes");
 	var sendHome = page.find("#sendHome");
 	if (day.optionalLeaveTime) {
-		var startMinutes = day.optionalLeaveTime.beginTime.slice(14,16);
-		var endMinutes = day.optionalLeaveTime.endTime ? day.optionalLeaveTime.endTime.slice(14,16) : "";
+		var startMinutes = day.optionalLeaveTime.beginTime.format("mm");
+		var endMinutes = day.optionalLeaveTime.endTime ? day.optionalLeaveTime.format("mm") : "";
 		startMinuteSelect.val(startMinutes);
 		endMinuteSelect.val(endMinutes);
 		minutesSelectors.selectmenu("refresh");
-		var hours = day.optionalLeaveTime.beginTime.slice(11,13);
-		if (hours.charAt(0) === '0') hours = hours.slice(1,2);
-		startHourSelect.val(hours);
-		hours = day.optionalLeaveTime.endTime.slice(11,13);
-		if (hours.charAt(0) === '0') hours = hours.slice(1,2);
-		endHourSelect.val(hours);
+		startHourSelect.val(day.optionalLeaveTime.beginTime.hour());
+		endHourSelect.val(day.optionalLeaveTime.endTime.hour());
 		hoursSelectors.selectmenu("refresh");
 		sendHome.prop("checked", day.optionalLeaveTime.sendHome);
 		sendHome.checkboxradio("refresh");
@@ -65,11 +61,11 @@ $(document).on("pagebeforeshow", "#optional", function(event, ui) {
 	page.find("#btn-update").click(function() {
 		var beginTime = new Date();
 		beginTime.setHours(startHourSelect.val(), startMinuteSelect.val());
-		data.beginTime = beginTime.jsonFormat();
+		data.beginTime = beginTime;
 		if (sendHome.hasClass("ui-disabled") === false) {
 			var endTime = new Date();
 			endTime.setHours(endHourSelect.val(), endMinuteSelect.val());
-			data.endTime = endTime.jsonFormat();
+			data.endTime = endTime;
 			data.sendHome = sendHome.is(":checked");
 		} 
 		RESTService.post("/optionalleavetime/update.do", profile, data, refresh);

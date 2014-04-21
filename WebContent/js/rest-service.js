@@ -1,13 +1,8 @@
 var RESTService = {
-
-	get: function(url, profile, callback) {
-		$.mobile.loading("show");
-		if (url.charAt(0) != "/") url = "/" + url;
-		$.ajaxSetup({ cache: false });
-		var options = {
+	getCommonOptions: function(profile, url) {
+		return {
 			url: profile.url() + "/mobile/v3" + url,
 			crossDomain: true,
-			type: "GET",
 			dataType: "json",
 			contentType: "application/json; charset=utf-8",
 			converters: {"text json": function (jsonValue) {
@@ -20,6 +15,14 @@ var RESTService = {
 				if (profile.user !== undefined) request.setRequestHeader("Authorization", "Basic: " + window.btoa(profile.user.token));
 			}
 		};
+
+	},
+	get: function(url, profile, callback) {
+		$.mobile.loading("show");
+		if (url.charAt(0) != "/") url = "/" + url;
+		$.ajaxSetup({ cache: false });
+		var options = this.getCommonOptions(profile, url);
+		options.type = "GET"
 
 		$.ajax(options).done(function(data, textStatus, jqxhr) {
 			console.log(url + " " + jqxhr.status);
@@ -38,16 +41,8 @@ var RESTService = {
 	post: function(url, profile, data, callback) {
 		$.mobile.loading("show");
 		if (url.charAt(0) != "/") url = "/" + url;
-		var options = {
-			url: profile.url() + "/mobile/v3" + url,
-			crossDomain: true, 
-			type: "POST",
-			dataType: "json",
-			contentType: "application/json; charset=utf-8",
-			beforeSend: function (request) {
-				if (profile.user !== undefined) request.setRequestHeader("Authorization", "Basic: " + window.btoa(profile.user.token));
-			}
-		};
+		var options = this.getCommonOptions(profile, url);
+		options.type = "POST"
 		if (data) {
 			options.data = JSON.stringify(data);
 		}

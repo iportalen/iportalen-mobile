@@ -16,7 +16,7 @@ $("#btn-sickness,#btn-vacation").click(function(event) {
 	dialog.find("a[id^=btn]").off("click");
 	dialog.find("#btn-registration-today").click(function() {
 		var today = new Date();
-		data.from = today.jsonFormat();
+		data.from = today;
 		if (isSick) {
 			data.comment = $("#registration-comment").val();
 		}
@@ -24,7 +24,7 @@ $("#btn-sickness,#btn-vacation").click(function(event) {
 	});
 	dialog.find("#btn-registration-tomorrow").click(function() {
 		var tomorrow = new Date(new Date().getTime()+(60*60*24*1000));
-		data.from = tomorrow.jsonFormat();
+		data.from = tomorrow;
 		if (isSick) {
 			data.comment = $("#registration-comment").val();
 		}

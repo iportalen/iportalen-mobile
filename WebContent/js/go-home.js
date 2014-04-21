@@ -18,11 +18,10 @@ $(document).on("pagebeforeshow", "#go-home", function(event, ui) {
 		minutesSelect.append($("<option>").text(minutes));
 	});
 	if (day.goHome) {
-		var minutes = day.goHome.date.slice(14,16);
+		var minutes = day.goHome.date.format("mm");
 		minutesSelect.val(minutes);
 		minutesSelect.selectmenu("refresh");
-		var hours = day.goHome.date.slice(11,13);
-		if (hours.charAt(0) === '0') hours = hours.slice(1,2);
+		var hours = day.goHome.date.hour();
 		hoursSelect.val(hours);
 		hoursSelect.selectmenu("refresh");
 		page.find("#updateBar").show();
@@ -48,19 +47,19 @@ $(document).on("pagebeforeshow", "#go-home", function(event, ui) {
 	page.find("#btn-update").click(function() {
 		var date = new Date();
 		date.setHours(hoursSelect.val(), minutesSelect.val());
-		data.date = date.jsonFormat();
+		data.date = date;
 		RESTService.post("/gohome/update.do", profile, data, refresh);
 	});
 	page.find("#btn-today").click(function() {
 		var date = new Date();
 		date.setHours(hoursSelect.val(), minutesSelect.val());
-		data.date = date.jsonFormat();
+		data.date = date;
 		RESTService.post("/activity/goHome.do", profile, data, refresh);
 	});
 	page.find("#btn-tomorrow").click(function() {
 		var date = new Date(new Date().getTime()+(60*60*24*1000));
 		date.setHours(hoursSelect.val(), minutesSelect.val());
-		data.date = date.jsonFormat();
+		data.date = date;
 		RESTService.post("/activity/goHome.do", profile, data, refresh);
 	});
 });
