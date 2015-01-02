@@ -8,6 +8,13 @@ $(document).on("pageshow", "#login", function() {
 				profile.user = result.data;
 				profile.refreshSetting(function(result) {
 					iportalen.profiles.addProfile(profile.name, profile.host, profile.user);
+					if (iportalen.profiles.userProfile() !== undefined) {
+						var userProfile = iportalen.profiles.userProfile();
+						userProfile.userId = profile.user.userId;
+						RESTService.post("user.do", profile, iportalen.profiles.userProfile(), function(result) {
+							console.log("Updated new profile " + profile.name + " with stored user profile");
+						});
+					}
 					history.back();
 				});
 			} else {
@@ -20,13 +27,13 @@ $(document).on("pageshow", "#login", function() {
 	var realm = location.search.replace( "?", "" );
 	var profile = iportalen.profiles.getProfile(realm);
 	
-	page.find("#title").text(profile.name || "Ny profil");
+	page.find("#title").text(profile.name || "Ny adgang");
 	if(profile.user) {
 		page.find("#host").val(profile.host);
 		page.find("#user").val(profile.user.userId);
 		page.find("#edit-profile-div").show();
 		page.find("#update-btn").click(function() {
-			if (page.find("#update-btn").val() == "Opdater profil") {
+			if (page.find("#update-btn").val() == "Opdater adgang") {
 				loginFunction();
 			} else {
 				page.find("#confirm-profile-delete").popup("open");
@@ -68,7 +75,7 @@ $(document).on("pageshow", "#login", function() {
 			if (page.find("#password").val() !== "") changed = true;
 			if (page.find("#remember-me").prop("checked") && profile.user.token === null) changed = true;
 			if (page.find("#remember-me").prop("checked") == false && profile.user.token !== null) changed = true;
-			page.find("#update-btn").val(changed ? "Opdater profil" : "Slet profil").button("refresh");
+			page.find("#update-btn").val(changed ? "Opdater adgang" : "Slet adgang").button("refresh");
 		});		
 	}
 });

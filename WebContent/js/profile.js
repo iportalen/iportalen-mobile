@@ -9,6 +9,104 @@ $(document).on("pageshow", "#profiles", function() {
 	    $(this).attr('data-transition','slidedown'); 
 	});
 });
+$(document).on("pageshow", "#profile", function() {
+	var page = $("#profile");
+	
+	var profile = iportalen.profiles.all()[0];
+	var userProfile;
+	RESTService.get("user.do?"+$.param({"userId": profile.user.userId}), profile, function(result) {
+		if (result.status === 200) {
+			userProfile = result.data;
+			updateView();
+		}
+	});
+	
+	$("#profileForm").validate(
+	{
+		debug: true,
+		rules: {
+			firstName: {
+				required: true
+			},
+			lastName: {
+				required: true
+			},
+			zipcode: {
+				digits: true
+			},
+			workZipcode: {
+				digits: true
+			},
+			mobilePhone: {
+				digits: true
+			},
+			phone: {
+				digits: true
+			}
+		},
+		errorPlacement: function (error, element) {				
+			error.appendTo(element.closest('.ui-field-contain'));
+		},
+		submitHandler: function(form) {
+			console.log("User profile update submitted");
+			updateProfile();
+			iportalen.profiles.userProfile(userProfile);
+			postForm();
+   			return false;
+  		}
+	});
+	
+	function updateView() {
+		page.find("#firstName").val(userProfile.firstName);
+		page.find("#lastName").val(userProfile.lastName);
+		page.find("#address").val(userProfile.address);
+		page.find("#zipcode").val(userProfile.zipcode);
+		page.find("#city").val(userProfile.city);
+		page.find("#email").val(userProfile.email);
+		page.find("#mobilePhone").val(userProfile.mobilePhone);
+		page.find("#phone").val(userProfile.phone);
+		page.find("#privateInformation").prop("checked", userProfile.privateInformation).flipswitch("refresh");
+		page.find("#workName").val(userProfile.workName);
+		page.find("#workAddress").val(userProfile.workAddress);
+		page.find("#workZipcode").val(userProfile.workZipcode);
+		page.find("#workCity").val(userProfile.workCity);
+		page.find("#workEmail").val(userProfile.workEmail);
+		page.find("#workPhone").val(userProfile.workPhone);
+	}
+	
+	function updateProfile() {
+		userProfile.firstName = page.find("#firstName").val();
+		userProfile.lastName = page.find("#lastName").val();
+		userProfile.address = page.find("#address").val();
+		userProfile.zipcode = page.find("#zipcode").val();
+		userProfile.city = page.find("#city").val();
+		userProfile.email = page.find("#email").val();
+		userProfile.mobilePhone = page.find("#mobilePhone").val();
+		userProfile.phone = page.find("#phone").val();
+		userProfile.privateInformation = page.find("#privateInformation").prop("checked");
+		userProfile.workName = page.find("#workName").val();
+		userProfile.workAddress = page.find("#workAddress").val();
+		userProfile.workZipcode = page.find("#workZipcode").val();
+		userProfile.workCity = page.find("#workCity").val();
+		userProfile.workEmail = page.find("#workEmail").val();
+		userProfile.workPhone = page.find("#workPhone").val();
+	}
+	
+	function postForm(index) {
+		var profile = iportalen.profiles.all()[index || 0];
+		if (profile) {
+			RESTService.post("user.do", profile, userProfile, function(result) {
+				if (result.status == 204) {
+					postForm(index+1 || 1);
+				} else {
+					$("#popupError").popup("open", { transition: "fade" });					
+				}
+			});			
+		} else {
+			history.back();
+		}
+	}
+});
 iportalen.prototypes.profileFunctions = {
 		protocol: function() {
 			if (this.host === undefined) return;
@@ -120,6 +218,13 @@ iportalen.profiles = function() {
 				profiles.push(that.getProfile(key));
 			});
 			return profiles;
+		},
+		userProfile: function(userProfile) {
+			if (userProfile === undefined) {
+				return JSON.parse(localStorage["userProfile"]);
+			} else {
+				localStorage["userProfile"] = JSON.stringify(userProfile);
+			}
 		}
 	}
 }();

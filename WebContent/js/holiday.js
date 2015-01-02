@@ -1,4 +1,4 @@
-$(document).on("pagebeforeshow", "#feedback", function(event, ui) {
+$(document).on("pageshow", "#feedback", function(event, ui) {
 	var child = iportalen.currentChild;
 	var profile = iportalen.profiles.getProfile(child.realm);
 
@@ -12,11 +12,11 @@ $(document).on("pagebeforeshow", "#feedback", function(event, ui) {
             $.each(result.data, function() {
                 
 				var div = $("<div class='ui-content' role='main'>");
-				div.append(getFieldset("Mandag", this.monday, this.mondayComes, this.mondayOff, this.mondayClosingDay));
-				div.append(getFieldset("Tirsdag", this.tuesday, this.tuesdayComes, this.tuesdayOff, this.tuesdayClosingDay));
-				div.append(getFieldset("Onsdag", this.wednesday, this.wednesdayComes, this.wednesdayOff, this.wednesdayClosingDay));
-				div.append(getFieldset("Torsdag", this.thursday, this.thursdayComes, this.thursdayOff, this.thursdayClosingDay));
-				div.append(getFieldset("Fredag", this.friday, this.fridayComes, this.fridayOff, this.fridayClosingDay));
+				div.append(getFieldset(this.monday, this.mondayComes, this.mondayOff, this.mondayClosingDay));
+				div.append(getFieldset(this.tuesday, this.tuesdayComes, this.tuesdayOff, this.tuesdayClosingDay));
+				div.append(getFieldset(this.wednesday, this.wednesdayComes, this.wednesdayOff, this.wednesdayClosingDay));
+				div.append(getFieldset(this.thursday, this.thursdayComes, this.thursdayOff, this.thursdayClosingDay));
+				div.append(getFieldset(this.friday, this.fridayComes, this.fridayOff, this.fridayClosingDay));
 				if (div.children().length != 0) {
 					content.append($("<div data-role=header data-theme='b'>").append($("<h3>").text("Uge " + this.weekOfYear)));
 					content.append(div);
@@ -32,10 +32,11 @@ $(document).on("pagebeforeshow", "#feedback", function(event, ui) {
         }
     });
 	
-	function getFieldset(dayOfWeek, date, coming, notComing, closingDay) {
+	function getFieldset(date, coming, notComing, closingDay) {
 		if (!date) return null;
+		var dayOfWeek = date.format("dddd").capitalize();
 		var fieldset = $("<fieldset data-role='controlgroup' data-type='horizontal'>");
-		fieldset.append($("<legend class='form-text'>").text(dayOfWeek + " d."+date.format("L")));
+		fieldset.append($("<legend class='form-text'>").text(dayOfWeek + " d."+date.format("LL")));
 		var comingButton = $("<input type='radio'>").prop("name", "coming-"+date.unix()).prop("id", "coming-"+date.unix()).prop("value", true).attr("data-time", date.valueOf());
 		fieldset.append(comingButton);
 		fieldset.append($("<label>").prop("for", "coming-"+date.unix()).text("Kommer"));
@@ -72,6 +73,9 @@ $(document).on("pageshow", "#planned-holiday", function(event, ui) {
 				}
 				list.append(li);
 			});
+			if (list.children().length === 0) {
+				list.append($("<li>").append($("<i>").text("Ingen planlagt ferie")));
+			}
 			list.listview("refresh");
 		}
     });

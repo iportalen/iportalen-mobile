@@ -63,6 +63,9 @@ iportalen.renderDay = function() {
 		}
 	}
 	list.height(100);
+	if (list.children().length === 0) {
+		list.append($("<li>").append($("<i>").text("Ingen informationer")));
+	}
 	list.listview("refresh");
 };
 

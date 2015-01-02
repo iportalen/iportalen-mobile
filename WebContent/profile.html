@@ -1,0 +1,94 @@
+	<!DOCTYPE html> 
+<html> 
+	<head> 
+		<script>
+			location.href = "mobile.html";
+		</script>    
+	</head> 
+
+	<body> 
+		<div data-role=page id="profile">
+			<div id="myHeader" data-role=header data-position="fixed" data-add-back-btn=true data-tap-toggle="false">
+				<h1 id=title>Profil</h1>
+			</div>
+			<div data-role="popup" data-rel="back" id="popupError">
+				<p>Kunne ikke opdatere dine oplysninger, prøv venligst igen senere</p>
+			</div>
+			<form id="profileForm" action="">
+				<div data-role=footer data-theme="b">
+					<h3>Privatoplysninger</h3>
+				</div>
+				<div data-role=content>
+					<div class="ui-field-contain">
+						<label for="firstName">Fornavn</label>
+						<input type="text" name="firstName" id="firstName" maxlength=50>
+					</div>
+					<div class="ui-field-contain">
+						<label for="lastName">Efternavn</label>
+						<input type="text" name="lastName" id="lastName" maxlength=50>
+					</div>
+					<div class="ui-field-contain">
+						<label for="address">Adresse</label>
+						<input type="text" name="address" id="address" maxlength=50>
+					</div>
+					<div class="ui-field-contain">
+						<label for="zipcode">Postnr.</label>
+						<input type="text" name="zipcode" id="zipcode" maxlength=4>
+					</div>
+					<div class="ui-field-contain">
+						<label for="city">By</label>
+						<input type="text" name="city" id="city" maxlength=50>
+					</div>
+					<div class="ui-field-contain">
+						<label for="email">E-mail-adresser</label>
+						<input type="text" name="email" id="email">
+					</div>
+					<div class="ui-field-contain">
+						<label for="mobilePhone">Mobiltelefon</label>
+						<input type="text" name="mobilePhone" id="mobilePhone" maxlength=8>
+					</div>
+					<div class="ui-field-contain">
+						<label for="phone">Fastnettelefon</label>
+						<input type="text" name="phone" id="phone" maxlength=8>
+					</div>
+					<div class="ui-field-contain">
+						<label for="privateInformation">Skjul information for de andre forældre</label>
+						<input type="checkbox" data-role="flipswitch" name="privateInformation" id="privateInformation" data-on-text="Ja" data-off-text="Nej">					
+					</div>
+				</div>
+				<div data-role=footer data-theme="b">
+					<h3>Arbejdsoplysninger</h3>
+				</div>
+				<div data-role=content>
+					<div class="ui-field-contain">
+						<label for="workName">Firmanavn</label>
+						<input type="text" name="workName" id="workName" maxlength=50>
+					</div>
+					<div class="ui-field-contain">
+						<label for="workAddress">Adresse</label>
+						<input type="text" name="workAddress" id="workAddress" maxlength=50>
+					</div>
+					<div class="ui-field-contain">
+						<label for="workZipcode">Postnr.</label>
+						<input type="text" name="workZipcode" id="workZipcode" maxlength=4>
+					</div>
+					<div class="ui-field-contain">
+						<label for="workCity">By</label>
+						<input type="text" name="workCity" id="workCity" maxlength=50>
+					</div>
+					<div class="ui-field-contain">
+						<label for="workEmail">E-mail-adresser</label>
+						<input type="text" name="workEmail" id="workEmail">
+					</div>
+					<div class="ui-field-contain">
+						<label for="workPhone">Telefon</label>
+						<input type="text" name="workPhone" id="workPhone" maxlength=50>
+					</div>
+					<div class="ui-field-contain">
+						<input type="submit" value="Opdater" class="ui-btn ui-btn-b ui-shadow ui-corner-all" id="submit"/>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

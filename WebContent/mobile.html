@@ -1,6 +1,6 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
+<!DOCTYPE html>
+<html>
+<head>
   <meta charset="utf-8"/>
   <meta name=viewport content="user-scalable=no,width=device-width" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -26,11 +26,11 @@
 			$.mobile.defaultPageTransition = 'slide';
 			$.mobile.toolbar.prototype.options.backBtnText = "Tilbage";
 		});
-  </script>    
+  </script>
   <script src="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js"></script>
 
-</head> 
-	<body> 
+</head>
+	<body>
 		<div data-role=page id=home>
 			<div data-role="panel" id="mypanel" data-display="overlay" data-position="right">
 				<h1 id="navn"></h1>
@@ -38,7 +38,7 @@
 					<li id="btn-vacation"><a href="#" data-rel="close">Fri</a></li>
 					<li id="btn-sickness"><a href="#" data-rel="close">Syg</a></li>
 					<li id="btn-message"><a href="#"  data-rel="close" class="ui-btn ui-icon-comment ui-btn-icon-right" >Besked</a></li>
-					<li id="btn-go-home"><a id="go-home-url" class="ui-btn ui-icon-clock ui-btn-icon-right">Gå hjem tid</a></li>
+					<li id="btn-go-home"><a id="go-home-url" class="ui-btn ui-icon-clock ui-btn-icon-right" data-transition="slide">Gå hjem tid</a></li>
 					<li id="btn-phone"><a href="phonelist.html" class="ui-btn ui-icon-phone ui-btn-icon-right" >Telefonliste</a></li>
 					<li id="btn-planned-holiday"><a href="planned-holiday.html" class="ui-btn ui-icon-calendar ui-btn-icon-right" >Planlagt ferie</a></li>
 					<li id="btn-history"><a href="history.html" class="ui-btn ui-icon-calendar ui-btn-icon-right">Historik</a></li>
@@ -46,7 +46,7 @@
 					<li id="btn-cutomer-feedback"><a class="ui-btn ui-icon-mail ui-btn-icon-right" rel="external" href="mailto:kontakt@iportalen.dk?subject=Ris%20%26%20ros">Ris &amp; ros</a></li>
 					<li><a href="#close" data-rel="close" class="ui-btn ui-icon-delete ui-btn-icon-right">Luk</a></li>
 				</ul>
-				
+
 			</div>
 			<div data-role=header data-position=fixed>
 				<h1 id=title>iportalen</h1>
@@ -69,7 +69,7 @@
 					</div>
 					<a href="#" id="btn-registration-today"	class="ui-btn ui-corner-all ui-shadow ui-btn-b" data-rel="back">I dag</a>
 					<a href="#" id="btn-registration-tomorrow"	class="ui-btn ui-corner-all ui-shadow ui-btn-b" data-rel="back">I morgen</a>
-					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-a"	data-rel="back">Annullér</a> 
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-a"	data-rel="back">Annullér</a>
 				</div>
 			</div>
 			<div data-role="popup" id="message" data-overlay-theme="b" data-theme="a" style="min-width: 250px;">
@@ -87,13 +87,13 @@
 					<h1>Aflys i dag?</h1>
 				</div>
 				<div role="main" class="ui-content">
-					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-a"	data-rel="back">Annullér</a>
 					<a id="btn-cancel-activity" class="ui-btn ui-corner-all ui-shadow ui-btn-b" data-rel="back">OK</a>
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-a"	data-rel="back">Annullér</a>
 				</div>
 			</div>
             <div id=home-footer data-role="footer" data-position="fixed" data-tap-toggle="false">
                     <h1 id="swiper-indicator"></h1>
-            </div>            
+            </div>
    		</div>
 		<div data-role=page id="no-support-local-storage">
   			<div data-role=header data-position=fixed>
@@ -136,6 +136,9 @@
 		<script src="js/modernizr.custom.49780.js"></script>
 		<script src="js/moment-with-langs.min.js"></script>
 		<script src="js/jquery.deparam.min.js"></script>
+		<script src="jquery-validation-1.12.0/jquery.validate.min.js"></script>
+		<script src="jquery-validation-1.12.0/additional-methods.min.js"></script>
+		<script src="js/validator-error-messages.js"></script>
 		<script src="js/rest-service.js"></script>
 		<script src="js/profile.js"></script>
 		<script src="js/login.js"></script>
@@ -154,9 +157,9 @@
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		
+
 		  ga('create', 'UA-43366708-1', 'iportalen.dk');
 		  ga('send', 'pageview');
-		</script>		
+		</script>
 	</body>
 </html>
