@@ -24,7 +24,7 @@ $(document).on("pagebeforeshow", "#optional", function(event, ui) {
 	var sendHome = page.find("#sendHome");
 	if (day.optionalLeaveTime) {
 		var startMinutes = day.optionalLeaveTime.beginTime.format("mm");
-		var endMinutes = day.optionalLeaveTime.endTime ? day.optionalLeaveTime.format("mm") : "";
+		var endMinutes = day.optionalLeaveTime.endTime ? day.optionalLeaveTime.endTime.format("mm") : "";
 		startMinuteSelect.val(startMinutes);
 		endMinuteSelect.val(endMinutes);
 		minutesSelectors.selectmenu("refresh");
@@ -37,7 +37,7 @@ $(document).on("pagebeforeshow", "#optional", function(event, ui) {
 	} else {
 		page.find("#createBar").show();
 	}
-	
+
 	page.find("select").change(function() {
 		if (startMinuteSelect.val() && startHourSelect.val()) {
 			$("a[data-theme=b]").removeClass("ui-disabled");
@@ -50,7 +50,7 @@ $(document).on("pagebeforeshow", "#optional", function(event, ui) {
 			sendHome.addClass("ui-disabled");
 		}
 	});
-	
+
 	page.find("#btn-delete").click(function() {
 		var dialog = page.find("#confirm-delete-optional");
 		dialog.find("#btn-confirm-delete-optional").click(function() {
@@ -67,7 +67,7 @@ $(document).on("pagebeforeshow", "#optional", function(event, ui) {
 			endTime.setHours(endHourSelect.val(), endMinuteSelect.val());
 			data.endTime = endTime;
 			data.sendHome = sendHome.is(":checked");
-		} 
+		}
 		RESTService.post("/optionalleavetime/update.do", profile, data, refresh);
 	});
 	page.find("#btn-today").click(function() {
